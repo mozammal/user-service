@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  user-service:
+    container_name: user-service-container
+    image: user-service
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - /data/user-service
+    ports:
+      - '8080:8080'
