@@ -14,11 +14,18 @@ git clone https://github.com/mozammal/user-service.git
 ```
 
 There are several ways to run a Spring Boot application on your local machine. One way
-is to use docker-compose from the command line like the following command:
+is to use docker-compose from the command line like the following commands:
 ```shell
 cd user-service
 mvn clean package
 docker-compose up -d
+```
+
+If you need sudo access to run docker-compose the use the following commands:
+```shell
+cd user-service
+mvn clean package
+sudo docker-compose up -d
 ```
 Another way is to use maven to run the application from the command line like:
 
