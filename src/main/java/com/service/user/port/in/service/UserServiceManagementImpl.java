@@ -10,6 +10,7 @@ import com.service.user.exception.UserNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +67,7 @@ public class UserServiceManagementImpl implements UserSearchService, UserService
     return userRepository.save(newUser);
   }
 
+  @Transactional
   @Override
   public User addNewEmailToUser(List<Email> newEmails, Integer id) {
     return userRepository
@@ -81,6 +83,7 @@ public class UserServiceManagementImpl implements UserSearchService, UserService
         .orElseThrow(() -> new UserNotFoundException(id));
   }
 
+  @Transactional
   @Override
   public User addNewPhoneNumberToUser(List<PhoneNumber> newPhoneNUmbers, Integer id) {
     return userRepository
@@ -106,6 +109,7 @@ public class UserServiceManagementImpl implements UserSearchService, UserService
     userRepository.deleteById(id);
   }
 
+  @Transactional
   @Override
   public Email updateExistingEmail(Email newEmail, Integer id) {
     return emailRepository
@@ -118,6 +122,7 @@ public class UserServiceManagementImpl implements UserSearchService, UserService
         .orElseThrow(() -> new EmailNotFoundException(id));
   }
 
+  @Transactional
   @Override
   public PhoneNumber updateExistingPhoneNumber(PhoneNumber newPhoneNumber, Integer id) {
     return phoneNumberRepository

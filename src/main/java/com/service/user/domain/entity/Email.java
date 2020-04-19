@@ -21,4 +21,7 @@ public class Email {
 
   @JsonIgnore
   @ManyToOne private User user;
+
+  @Version
+  private long version = 0L;
 }

@@ -39,6 +39,9 @@ public class User {
           orphanRemoval = true)
   private List<PhoneNumber> phoneNumbers = new ArrayList<>();
 
+  @Version
+  private long version = 0L;
+
   public void addEmail(Email email) {
     emails.add(email);
     email.setUser(this);

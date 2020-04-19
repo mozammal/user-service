@@ -36,12 +36,6 @@ public class UserRestController {
     this.userService = userService;
   }
 
-  // {"id":12,"firstName":"mozammal","lastName":"hossain","emails":[{"mail":"mozammaltomal.100@gmail.com"},{"mail":"mozammaltomal_1001@yahoo.com"}],"phoneNumbers":[{"number":"01753193627"}]}
-
-  // [{
-  // "mail": "abdul@yahoo.com"
-  // }
-
   @Operation(
       summary = "Add new user with contacts",
       description =
@@ -114,22 +108,38 @@ public class UserRestController {
     return userService.addNewPhoneNumberToUser(newPhoneNUmbers, id);
   }
 
+  @Operation(
+          summary = "Update existing phonenumber",
+          description =
+                  "Update phonenumber, needs to provide with valid phone number id")
   @PutMapping("/phonenumbers/{id}")
   PhoneNumber updateExistingPhoneNumber(
       @RequestBody PhoneNumber newPhoneNumber, @PathVariable @NotNull Integer id) {
     return userService.updateExistingPhoneNumber(newPhoneNumber, id);
   }
 
+  @Operation(
+          summary = "find user by id",
+          description =
+                  "find user details by id, needs to provide with valid user id")
   @GetMapping("/users/{userId}")
   User findUserById(@PathVariable @NotNull Integer userId) {
     return userService.findUserById(userId);
   }
 
+  @Operation(
+          summary = "delete users by id",
+          description =
+                  "delete a user by id, needs to provide with valid user id")
   @DeleteMapping("/users/{id}")
   void deleteUser(@PathVariable @NotNull Integer id) {
     userService.deleteUser(id);
   }
 
+  @Operation(
+          summary = "serach user by name",
+          description =
+                  "search user by firstName, lastName or for both, you need to provide firstName, lastName or both params for specific search")
   @GetMapping("/search_users")
   List<User> findUsersByFirstOrLastName(
       @RequestParam(value = "firstName", required = false) String firstName,

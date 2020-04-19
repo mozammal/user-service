@@ -24,4 +24,7 @@ public class PhoneNumber {
   private String number;
 
   @JsonIgnore @ManyToOne private User user;
+
+  @Version
+  private long version = 0L;
 }
