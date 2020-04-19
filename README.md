@@ -1,4 +1,4 @@
-https://travis-ci.org/mozammal/user-service.svg?branch=master
+[![Build Status](https://travis-ci.org/mozammal/user-service.svg?branch=master)](https://travis-ci.org/mozammal/user-service)
 
 ## Requirements
 
