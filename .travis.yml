@@ -8,4 +8,5 @@ services:
 jdk:
   - openjdk11
 
-script: mvn clean install
+install:
+  - mvn clean install
