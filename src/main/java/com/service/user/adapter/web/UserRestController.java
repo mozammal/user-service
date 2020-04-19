@@ -43,17 +43,16 @@ public class UserRestController {
   // }
 
   @Operation(
-      summary = "Add new contact",
-      description = "Add new contact",
-      tags = {"user"})
+      summary = "Add new user with contacts",
+      description =
+          "Add new user with contacts, user and contacts need to be valid, return the saved user with contact")
   @ApiResponses(
       value = {
         @ApiResponse(
-            responseCode = "201",
+            responseCode = "200",
             description = "Contact created",
             content = @Content(schema = @Schema(implementation = User.class))),
-        @ApiResponse(responseCode = "400", description = "Invalid input"),
-        @ApiResponse(responseCode = "409", description = "Contact already exists")
+        @ApiResponse(responseCode = "400", description = "Invalid input")
       })
   @PostMapping(
       value = "/users",
@@ -62,22 +61,53 @@ public class UserRestController {
     return userService.createNewUserWithContacts(user);
   }
 
-  @PutMapping("/users/{id}")
-  User updateUser(@Valid @RequestBody User newUser, @PathVariable @NotNull Integer id) {
-    return userService.updateUser(newUser, id);
-  }
-
+  @Operation(
+      summary = "Add new emails to existing user",
+      description =
+          "Add new emails to existing user, emails need to be valid, return the saved user with contacts")
+  @ApiResponses(
+      value = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "Email created",
+            content = @Content(schema = @Schema(implementation = User.class))),
+        @ApiResponse(responseCode = "400", description = "Invalid input")
+      })
   @PostMapping("/users/{id}/emails")
   User addNewEmailToUser(
       @Valid @RequestBody List<Email> newEmails, @PathVariable @NotNull Integer id) {
     return userService.addNewEmailToUser(newEmails, id);
   }
 
+  @Operation(
+      summary = "Update existing email",
+      description =
+          "Update existing email, emails need to be valid with id, return the updated email")
+  @ApiResponses(
+      value = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "Email updated",
+            content = @Content(schema = @Schema(implementation = Email.class))),
+        @ApiResponse(responseCode = "400", description = "Invalid input")
+      })
   @PutMapping("/emails/{id}")
   Email updateExistingEmail(@Valid @RequestBody Email newEmail, @PathVariable @NotNull Integer id) {
     return userService.updateExistingEmail(newEmail, id);
   }
 
+  @Operation(
+      summary = "Add phonenumber",
+      description =
+          "Add phonenumber, needs to provide valid user id, return the updated user with contacts")
+  @ApiResponses(
+      value = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "PhoneNumber created",
+            content = @Content(schema = @Schema(implementation = PhoneNumber.class))),
+        @ApiResponse(responseCode = "400", description = "Invalid input")
+      })
   @PostMapping("/users/{id}/phonenumbers")
   User addNewPhoneNumberToUser(
       @Valid @RequestBody List<PhoneNumber> newPhoneNUmbers, @PathVariable @NotNull Integer id) {
@@ -100,7 +130,7 @@ public class UserRestController {
     userService.deleteUser(id);
   }
 
-  @GetMapping("/searchUsers")
+  @GetMapping("/search_users")
   List<User> findUsersByFirstOrLastName(
       @RequestParam(value = "firstName", required = false) String firstName,
       @RequestParam(value = "lastName", required = false) String lastName,

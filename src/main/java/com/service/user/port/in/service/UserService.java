@@ -14,8 +14,6 @@ public interface UserService {
 
   User createNewUserWithContacts(User user);
 
-  User updateUser(User newUser, Integer id);
-
   User addNewEmailToUser(List<Email> newEmails, Integer id);
 
   User addNewPhoneNumberToUser(List<PhoneNumber> newPhoneNUmbers, Integer id);

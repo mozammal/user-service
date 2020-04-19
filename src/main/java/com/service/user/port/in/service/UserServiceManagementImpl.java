@@ -67,25 +67,6 @@ public class UserServiceManagementImpl implements UserSearchService, UserService
   }
 
   @Override
-  public User updateUser(User newUser, Integer id) {
-    return userRepository
-        .findById(id)
-        .map(
-            user -> {
-              user.setEmails(newUser.getEmails());
-              user.setPhoneNumbers(newUser.getPhoneNumbers());
-              user.setFirstName(newUser.getFirstName());
-              user.setLastName(newUser.getLastName());
-              return userRepository.save(user);
-            })
-        .orElseGet(
-            () -> {
-              newUser.setId(id);
-              return userRepository.save(newUser);
-            });
-  }
-
-  @Override
   public User addNewEmailToUser(List<Email> newEmails, Integer id) {
     return userRepository
         .findById(id)
