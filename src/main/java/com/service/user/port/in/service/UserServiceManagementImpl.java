@@ -50,8 +50,8 @@ public class UserServiceManagementImpl implements UserSearchService, UserService
     List<PhoneNumber> phoneNumbers = new ArrayList<>(user.getPhoneNumbers());
     User newUser = new User();
     newUser.setId(user.getId());
-    newUser.setLastName(user.getLastName());
-    newUser.setFirstName(user.getFirstName());
+    newUser.setLastName(user.getLastName().toLowerCase());
+    newUser.setFirstName(user.getFirstName().toLowerCase());
     emails.forEach(
         email -> {
           email.setMail(email.getMail());
