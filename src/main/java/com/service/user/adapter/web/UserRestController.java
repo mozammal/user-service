@@ -3,8 +3,6 @@ package com.service.user.adapter.web;
 import com.service.user.domain.entity.Email;
 import com.service.user.domain.entity.PhoneNumber;
 import com.service.user.domain.entity.User;
-import com.service.user.domain.replository.*;
-import com.service.user.exception.UserNotFoundException;
 import com.service.user.port.in.service.UserSearchService;
 import com.service.user.port.in.service.UserServiceManagementImpl;
 import io.swagger.v3.oas.annotations.Operation;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.List;
 
 @Validated
@@ -109,9 +106,8 @@ public class UserRestController {
   }
 
   @Operation(
-          summary = "Update existing phonenumber",
-          description =
-                  "Update phonenumber, needs to provide with valid phone number id")
+      summary = "Update existing phonenumber",
+      description = "Update phonenumber, needs to provide with valid phone number id")
   @PutMapping("/phonenumbers/{id}")
   PhoneNumber updateExistingPhoneNumber(
       @RequestBody PhoneNumber newPhoneNumber, @PathVariable @NotNull Integer id) {
@@ -119,33 +115,33 @@ public class UserRestController {
   }
 
   @Operation(
-          summary = "find user by id",
-          description =
-                  "find user details by id, needs to provide with valid user id")
+      summary = "find user by id",
+      description = "find user details by id, needs to provide with valid user id")
   @GetMapping("/users/{userId}")
   User findUserById(@PathVariable @NotNull Integer userId) {
     return userService.findUserById(userId);
   }
 
   @Operation(
-          summary = "delete users by id",
-          description =
-                  "delete a user by id, needs to provide with valid user id")
+      summary = "delete users by id",
+      description = "delete a user by id, needs to provide with valid user id")
   @DeleteMapping("/users/{id}")
   void deleteUser(@PathVariable @NotNull Integer id) {
     userService.deleteUser(id);
   }
 
   @Operation(
-          summary = "serach user by name",
-          description =
-                  "search user by firstName, lastName or for both, you need to provide firstName, lastName or both params for specific search")
+      summary = "serach user by name",
+      description =
+          "search user by firstName, lastName or for both, you need to provide firstName, lastName or both params for specific search")
   @GetMapping("/search_users")
   List<User> findUsersByFirstOrLastName(
       @RequestParam(value = "firstName", required = false) String firstName,
       @RequestParam(value = "lastName", required = false) String lastName,
       Pageable pageable) {
 
+    firstName = firstName != null ? firstName.toLowerCase() : firstName;
+    lastName = lastName != null ? lastName.toLowerCase() : lastName;
     return userService.findUsersByFirstOrLastNameOrBoth(
         new UserSearchService.FindUserByFirstOrLastNameOrBothCommand(firstName, lastName));
   }
