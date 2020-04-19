@@ -21,7 +21,7 @@ mvn clean package
 docker-compose up -d
 ```
 
-If you need sudo access to run docker-compose the use the following commands:
+If you need sudo access to run docker-compose then use the following commands:
 ```shell
 cd user-service
 mvn clean package
