@@ -8,7 +8,7 @@ For building and running the application you need:
 
 ## Running the application locally
 
-clone the repo with the comamnd given below: 
+clone the repo with the command given below: 
 ```shell
 git clone https://github.com/mozammal/user-service.git
 ```
