@@ -1,3 +1,5 @@
+https://travis-ci.org/mozammal/user-service.svg?branch=master
+
 ## Requirements
 
 For building and running the application you need:
