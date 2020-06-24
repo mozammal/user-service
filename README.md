@@ -163,13 +163,4 @@ The REST APIs documentation can be accessed at
 - Method: DELETE
 - example url:  http://localhost:8080/api/users/1
 
-# Best practices used in this demo app
- 
-- Services and Controllers are put together in modules that are oriented around functionality
-- Controllers delegate business logic to service layer
-- Services are built around business capabilities 
-- constructor injection was employed
-- Bean validation was used
-- Global exception handling
-- Logging framework used 
-- Test coverage 
+
